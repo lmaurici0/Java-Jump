@@ -1,0 +1,157 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.game {
+  width: 100%;
+  height: 100vh;
+  border-bottom: 30px solid green;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(#87ceeb, #e0f6ff);
+}
+
+button {
+  background: green;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bolder;
+  border: none;
+  padding: 1.1rem;
+  /* position: absolute; */
+  cursor: pointer;
+  z-index: 1;
+  font-family: "Press Start 2P", system-ui;
+  border-radius: 6px;
+  transition: 0.3s;
+  width: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10% auto;
+}
+
+button:hover {
+  border: 2px solid green;
+  background: none;
+  color: green;
+}
+
+.game-over {
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.322);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.game-over h1 {
+  font-family: "Press Start 2P", system-ui;
+  font-size: 3rem;
+  color: #ff0000;
+  text-align: center;
+  margin-top: 10rem;
+}
+
+.pipe {
+  position: absolute;
+  bottom: 0;
+  right: -80px;
+  width: 80px;
+}
+
+.mario {
+  width: 150px;
+  position: absolute;
+  bottom: 0;
+}
+
+.logoMario {
+  width: 500px;
+  height: 150px;
+  z-index: 1;
+}
+
+.logo {
+  margin: 5% auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.score {
+  font-family: "Press Start 2P", system-ui;
+  font-size: 2rem;
+  padding: 15px;
+  color: #fff;
+}
+
+.clouds {
+  width: 550px;
+  position: absolute;
+  top: 0;
+  animation: clouds-animation 20s infinite linear;
+}
+
+@keyframes clouds-animation {
+  from {
+    right: -550px;
+  }
+  to {
+    right: 100%;
+  }
+}
+
+.pipe-animation {
+  animation: pipe-animation 2s infinite linear;
+}
+
+@keyframes pipe-animation {
+  from {
+    right: -80px;
+  }
+
+  to {
+    right: 100%;
+  }
+}
+
+.jump {
+  animation: jump 800ms ease-out;
+}
+
+@keyframes jump {
+  0% {
+    bottom: 0;
+  }
+  40% {
+    bottom: 200px;
+  }
+  50% {
+    bottom: 200px;
+  }
+  60% {
+    bottom: 200px;
+  }
+  70% {
+    bottom: 150px;
+  }
+  80% {
+    bottom: 100px;
+  }
+  90% {
+    bottom: 50px;
+  }
+  100% {
+    bottom: 0;
+  }
+}
