@@ -6,19 +6,28 @@
   <link rel="stylesheet" href="css/style.css">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mario</title>
+  <title>Duke Dash</title>
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
+
+  <div class="tutorial">
+    <h1>Como Jogar?</h1>
+    <p>Use a tecla Enter para iniciar o jogo e a barra de espaço para saltar sobre os canos</p>
+    <button onclick="startGame()">Iniciar Jogo</button>
+    <p class="copy">&copy; - Esse jogo foi criado por Eric Luis da Silva Mauricio para o projeto JBI - 2024 </p>
+
+  </div>
   <div class="game">
-    <div class="score" style="z-index: 1;">Score: <p class="points" style="z-index: 1;"></p>
+    <div class="score">Score: <p class="points" style="z-index: 1;"></p>
     </div>
+    <div class="coin_container"></div>
     <div class="logo">
       <img src="img/logo.png" alt="Logo Mario" class="logoMario">
     </div>
-    <img class="mario" src="img/mario.gif" alt="mario">
-    <img class="pipe" src="img/pipe.png" alt="cano">
+    <img class="mario" src="img/girl.gif" alt="mario">
+    <img class="pipe" src="img/cano.png" alt="cano">
     <img class="clouds" src="img/clouds.png" alt="nuvem">
     <button class="start" onclick="startGame(), updateScore()">Iniciar</button>
   </div>
@@ -26,6 +35,7 @@
   <div class="game-over">
     <h1>Game Over</h1><button onclick="restartGame()">Reiniciar</button>
   </div>
+
 </body>
 <script src="app.js"></script>
 

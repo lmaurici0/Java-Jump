@@ -4,19 +4,29 @@ const logo = document.querySelector(".logoMario");
 const start = document.querySelector(".start");
 const gameOver = document.querySelector(".game-over");
 const scoreElement = document.querySelector(".points");
+const tutorial = document.querySelector(".tutorial");
+const game = document.querySelector(".game");
 
 let score = 0;
 let isGameRunning = false;
 
-audioStart = new Audio("song/audio_theme.mp3");
+audioStart = new Audio("song/track.mp3");
 audioGameOver = new Audio("song/audio_gameover.mp3");
 
+const showTutorial = () => {
+  tutorial.style.display = "flex"; 
+  game.style.display = "none"
+  
+};
+
 const updateScore = () => {
-  score++;
+  score ++;
   scoreElement.innerText = score;
 };
 
 const startGame = () => {
+  game.style.display = "flex"
+  tutorial.style.display = "none"; 
   pipe.classList.add("pipe-animation");
   start.style.display = "none";
   logo.style.display = "none";
@@ -26,13 +36,13 @@ const startGame = () => {
   audioStart.play();
 };
 
-const restartGame = () => {
+const restartGame = () => { 
   gameOver.style.display = "none";
   pipe.style.left = "";
   pipe.style.right = "0";
-  mario.src = "img/mario.gif";
-  mario.style.width = "150px";
-  mario.style.bottom = "0";
+  mario.src = "img/girl.gif";
+  mario.style.width = "200px";
+  mario.style.bottom = "-58px";
   start.style.display = "none";
   score = 0;
 
@@ -64,7 +74,6 @@ const loop = () => {
       mario.classList.remove(".jump");
       mario.style.bottom = `${marioPosition}px`;
 
-      mario.src = "img/game-over.png";
       mario.style.width = "80px";
       mario.style.marginLeft = "50px";
 
@@ -83,13 +92,16 @@ const loop = () => {
       gameOver.style.display = "flex";
 
       clearInterval(loop);
+
     }
+
     if (isGameRunning) updateScore();
     else score = 0;
   }, 10);
 };
 
 loop();
+window.onload = showTutorial;
 
 document.addEventListener("keypress", (e) => {
   const tecla = e.key;
