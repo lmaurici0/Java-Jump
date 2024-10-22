@@ -1,9 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-:root{
-  --purple: #6D35B0
-}
 
 * {
   margin: 0;
@@ -14,31 +9,27 @@
 .game {
   width: 100%;
   height: 100vh;
-  border-bottom: 30px solid rgba(1, 63, 1, 0.774);
+  border-bottom: 30px solid green;
   margin: 0 auto;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(#2e7c9b, #e0f6ff);
-  transition: background-color 0.5s ease; 
-}
-
-.score{
-  z-index: 999;
+  background: linear-gradient(#87ceeb, #e0f6ff);
 }
 
 button {
-  background: var(--purple);
+  background: green;
   color: white;
   font-size: 1.1rem;
   font-weight: bolder;
   border: none;
-  padding: 1.2rem;
+  padding: 1.1rem;
+  /* position: absolute; */
   cursor: pointer;
   z-index: 1;
   font-family: "Press Start 2P", system-ui;
   border-radius: 6px;
   transition: 0.3s;
-  width: 220px;
+  width: 180px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -46,9 +37,9 @@ button {
 }
 
 button:hover {
-  border: 2px solid var(--purple);
+  border: 2px solid green;
   background: none;
-  color: var(--purple);
+  color: green;
 }
 
 .game-over {
@@ -63,14 +54,12 @@ button:hover {
   top: 0;
   left: 0;
 }
-
 .game-over h1 {
   font-family: "Press Start 2P", system-ui;
   font-size: 3rem;
   color: #ff0000;
   text-align: center;
   margin-top: 10rem;
-  user-select: none;
 }
 
 .pipe {
@@ -81,9 +70,9 @@ button:hover {
 }
 
 .mario {
-  width: 200px;
+  width: 150px;
   position: absolute;
-  bottom: -58px;
+  bottom: 0;
 }
 
 .logoMario {
@@ -108,51 +97,9 @@ button:hover {
 
 .clouds {
   width: 550px;
-  position: fixed;
+  position: absolute;
   top: 0;
   animation: clouds-animation 20s infinite linear;
-}
-
-.tutorial {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #522a85;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  color: white;
-  z-index: 999;
-}
-
-.tutorial h1{
-  font-family: Poppins;
-  font-size: 3rem;
-  margin: 10px 0 80px 0;
-}
-
-.tutorial p:not(.copy){
-  font-family: Poppins;
-  font-size: 1.2rem;
-}
-
-.tutorial button{
-  width: 300px;
-  margin-top: 90px;
-  padding: 1.4rem;
-}
-
-.tutorial button:hover{
-  color: #fff;
-}
-
-.copy{
-  font-size: 14px;
-  margin-top: 70px;
-  font-family: Poppins;
 }
 
 @keyframes clouds-animation {
@@ -179,31 +126,32 @@ button:hover {
 }
 
 .jump {
-  animation: jump 0.6s ease-in-out;
+  animation: jump 800ms ease-out;
 }
 
 @keyframes jump {
   0% {
     bottom: 0;
   }
-
-  25% {
-    bottom: 120px;  
+  40% {
+    bottom: 200px;
   }
-
   50% {
-    bottom: 150px;  
+    bottom: 200px;
   }
-
-  75% {
-    bottom: 100px;  
+  60% {
+    bottom: 200px;
   }
-
+  70% {
+    bottom: 150px;
+  }
+  80% {
+    bottom: 100px;
+  }
   90% {
-    bottom: 40px;   
+    bottom: 50px;
   }
-
   100% {
-    bottom: 0;      
+    bottom: 0;
   }
 }
