@@ -9,31 +9,46 @@ const game = document.querySelector(".game");
 
 let score = 0;
 let isGameRunning = false;
+let scoreInterval; 
+let gameLoop; 
 
-audioStart = new Audio("song/track.mp3");
-audioGameOver = new Audio("song/audio_gameover.mp3");
+const audioStart = new Audio("song/track.mp3");
+const audioGameOver = new Audio("song/audio_gameover.mp3");
 
 const showTutorial = () => {
   tutorial.style.display = "flex"; 
-  game.style.display = "none"
-  
+  game.style.display = "none";
 };
 
 const updateScore = () => {
-  score ++;
+  score++;
   scoreElement.innerText = score;
+
+  if (score >= 100 && score <= 250) {
+    game.style.backgroundImage = "url('https://www.pixelstalk.net/wp-content/uploads/2016/07/8-Bit-Images-HD.png')"; 
+    game.style.transition = "1s ease-in-out"
+  }
+  else{
+    game.style.background = "linear-gradient(#2e7c9b, #e0f6ff)"; 
+  }
 };
 
 const startGame = () => {
-  game.style.display = "flex"
+  game.style.display = "flex";
   tutorial.style.display = "none"; 
   pipe.classList.add("pipe-animation");
   start.style.display = "none";
   logo.style.display = "none";
 
   isGameRunning = true;
+  score = 0; 
+  scoreElement.innerText = score; 
 
   audioStart.play();
+
+  scoreInterval = setInterval(updateScore, 100); 
+
+  loop(); 
 };
 
 const restartGame = () => { 
@@ -44,12 +59,11 @@ const restartGame = () => {
   mario.style.width = "200px";
   mario.style.bottom = "-58px";
   start.style.display = "none";
-  score = 0;
-
+  
   audioGameOver.pause();
   audioGameOver.currentTime = 0;
-  audioStart.play();
-  audioStart.currentTime = 0;
+
+  startGame(); 
 };
 
 const jump = () => {
@@ -61,13 +75,15 @@ const jump = () => {
 };
 
 const loop = () => {
-  setInterval(() => {
+  gameLoop = setInterval(() => {
     const pipePosition = pipe.offsetLeft;
     const marioPosition = window
       .getComputedStyle(mario)
       .bottom.replace("px", " ");
 
     if (pipePosition <= 120 && pipePosition > 0 && marioPosition < 80) {
+      clearInterval(gameLoop); 
+
       pipe.classList.remove(".pipe-animation");
       pipe.style.left = `${pipePosition}px`;
 
@@ -77,30 +93,23 @@ const loop = () => {
       mario.style.width = "80px";
       mario.style.marginLeft = "50px";
 
-      function stopAudioStart() {
-        audioStart.pause();
-      }
-      stopAudioStart();
-
+      audioStart.pause();
       audioGameOver.play();
 
-      function stopAudio() {
+      setTimeout(() => {
         audioGameOver.pause();
-      }
-      setTimeout(stopAudio, 7000);
+      }, 7000);
 
       gameOver.style.display = "flex";
+      isGameRunning = false; 
 
-      clearInterval(loop);
-
+      clearInterval(scoreInterval); 
     }
 
-    if (isGameRunning) updateScore();
-    else score = 0;
   }, 10);
 };
 
-loop();
+loop(); 
 window.onload = showTutorial;
 
 document.addEventListener("keypress", (e) => {
@@ -122,3 +131,5 @@ document.addEventListener("keypress", (e) => {
     startGame();
   }
 });
+
+document.querySelector(".restart").addEventListener("click", restartGame);
